@@ -20,20 +20,18 @@ public class RandomFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.thecocktaildb.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.thecocktaildb.com/api/json/v1/1/").addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
 
-        Call<Todo[]> callGetAllTodo = webServicesInterface.getAllTodo();
-        callGetAllTodo.enqueue(new Callback<Todo[]>() {
+        Call<Drink> callGetRandom = webServicesInterface.getRandom();
+        callGetRandom.enqueue(new Callback<Drink>() {
             @Override
-            public void onResponse(Call<Todo[]> call, Response<Todo[]> response) {
-                for (Todo t : response.body()){
-                    System.out.println(t.strDrink);
-                }
+            public void onResponse(Call<Drink> call, Response<Drink> response) {
+                    System.out.println(response.body().drinks[0].strDrink);
             }
 
             @Override
-            public void onFailure(Call<Todo[]> call, Throwable t) {
+            public void onFailure(Call<Drink> call, Throwable t) {
                 System.out.println("Fails");
             }
         });
