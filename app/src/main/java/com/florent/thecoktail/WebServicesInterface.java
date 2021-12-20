@@ -6,5 +6,5 @@ import retrofit2.http.Path;
 
 public interface WebServicesInterface {
     @GET("random.php")
-    Call<Drink> getRandom();
+    Call<Drink> getRandomTitle();
 }
