@@ -2,7 +2,7 @@ package com.florent.thecoktail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Todo {
+public class Coktail {
     //ID
     @SerializedName("idDrink")
     public int idDrink;

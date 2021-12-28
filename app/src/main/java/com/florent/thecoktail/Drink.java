@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName;
 
 public class Drink {
     @SerializedName("drinks")
-    public Todo[] drinks;
+    public Coktail[] drinks;
 }
