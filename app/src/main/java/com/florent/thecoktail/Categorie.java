@@ -1,8 +1,8 @@
 package com.florent.thecoktail;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Categorie {
-    private String categorie;
-    public String getCategorie() {
-        return categorie;
-    }
+    @SerializedName("strCategory")
+    public String strCategory;
 }

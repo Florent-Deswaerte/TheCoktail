@@ -1,11 +1,14 @@
 package com.florent.thecoktail;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class categorieListAdapter extends RecyclerView.Adapter<CategorieCellHolder> {
     private Categorie[] dataSource;
@@ -24,7 +27,7 @@ public class categorieListAdapter extends RecyclerView.Adapter<CategorieCellHold
 
     @Override
     public void onBindViewHolder(@NonNull CategorieCellHolder holder, int position) {
-        holder.categorieTextView.setText(dataSource[position].getCategorie());
+        holder.categorieTextView.setText(dataSource[position].strCategory);
     }
 
     @Override
