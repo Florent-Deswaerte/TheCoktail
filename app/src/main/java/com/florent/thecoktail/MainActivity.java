@@ -3,17 +3,30 @@ package com.florent.thecoktail;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.content.Intent;
 import android.view.MenuItem;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnCategorieListClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnCategorieListClickListener, OnCoktailCategorieListClickListener {
 
     Fragment RandomFragment;
     Fragment ListFragment;
     Fragment SearchFragment;
+    Fragment CocktailCategoryFragment;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -58,6 +71,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void onCategorieListClick(Categorie categorie) {
-        System.out.println(categorie.strCategory);
+        String category = categorie.strCategory;
+        CocktailCategoryFragment = new CocktailCategoryFragment(category);
+        loadFragment(CocktailCategoryFragment);
+    }
+
+    @Override
+    public void onCoktailCategorieListClick(CoktailCategorie coktailCategorie) {
+        String name = coktailCategorie.strDrink;
+        CocktailCategoryFragment = new CocktailDetailFragment(name);
+        loadFragment(CocktailCategoryFragment);
     }
 }

@@ -20,17 +20,22 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ListFragment extends Fragment {
+public class CocktailCategoryFragment extends Fragment {
 
-    private RecyclerView categorieListRecyclerView;
-    private RecyclerView.Adapter categorieListAdapter;
-    private RecyclerView.LayoutManager categorieListManager;
+    private RecyclerView cocktailCategorieListRecyclerView;
+    private RecyclerView.Adapter coktailCategorieListAdapter;
+    private RecyclerView.LayoutManager coktailCategorieListManager;
+    String category;
+
+    public CocktailCategoryFragment(String category){
+        this.category = category.replaceAll(" ", "_");
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        categorieListRecyclerView = view.findViewById(R.id.categorieListRecyclerView);
+        cocktailCategorieListRecyclerView = view.findViewById(R.id.cocktailCategorieListRecyclerView);
     }
 
     @Nullable
@@ -40,29 +45,29 @@ public class ListFragment extends Fragment {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.thecocktaildb.com/api/json/v1/1/").addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
 
-        List<String> AllCategorieList = new ArrayList<String>();
+        List<String> AllCoktailCategorieList = new ArrayList<String>();
 
-        Call<DrinkCategorie> callGetCategorie = webServicesInterface.getCategorie();
-        callGetCategorie.enqueue(new Callback<DrinkCategorie>() {
+        Call<DrinkCoktailCategorie> callGetCategorie = webServicesInterface.getCoktailCategorie(this.category);
+        callGetCategorie.enqueue(new Callback<DrinkCoktailCategorie>() {
             @Override
-            public void onResponse(Call<DrinkCategorie> call, Response<DrinkCategorie> response) {
+            public void onResponse(Call<DrinkCoktailCategorie> call, Response<DrinkCoktailCategorie> response) {
 
                 //Permet de fixer la taille du ReclyclerView
-                categorieListRecyclerView.setHasFixedSize(true);
+                cocktailCategorieListRecyclerView.setHasFixedSize(true);
                 //Permet de définir l'orientation de scroll du RecyclerView
-                categorieListManager = new LinearLayoutManager(getContext());
-                categorieListRecyclerView.setLayoutManager(categorieListManager);
+                coktailCategorieListManager = new LinearLayoutManager(getContext());
+                cocktailCategorieListRecyclerView.setLayoutManager(coktailCategorieListManager);
                 //On définit notre jeu de données pour alimenter notre liste.
                 //On crée notre adapter et on le lie avec notre jeu de données
-                categorieListAdapter = new CategorieListAdapter(response.body().categories, (MainActivity) getActivity());
-                categorieListRecyclerView.setAdapter(categorieListAdapter);
+                coktailCategorieListAdapter = new CoktailCategorieListAdapter(response.body().coktailCategories, (MainActivity) getActivity());
+                cocktailCategorieListRecyclerView.setAdapter(coktailCategorieListAdapter);
             }
 
             @Override
-            public void onFailure(Call<DrinkCategorie> call, Throwable t) {
+            public void onFailure(Call<DrinkCoktailCategorie> call, Throwable t) {
                 System.out.println("Fails");
             }
         });
-        return inflater.inflate(R.layout.fragment_list, null);
+        return inflater.inflate(R.layout.fragment_category, null);
     }
 }

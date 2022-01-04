@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class categorieListAdapter extends RecyclerView.Adapter<CategorieCellHolder> {
+public class CategorieListAdapter extends RecyclerView.Adapter<CategorieCellHolder> {
     private Categorie[] dataSource;
     private OnCategorieListClickListener onCategorieListClickListener;
-    public categorieListAdapter(Categorie[] dataSource, OnCategorieListClickListener listener) {
+    public CategorieListAdapter(Categorie[] dataSource, OnCategorieListClickListener listener) {
         this.dataSource = dataSource;
         onCategorieListClickListener = listener;
     }
