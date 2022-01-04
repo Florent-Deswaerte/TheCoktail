@@ -70,7 +70,6 @@ public class CocktailSearchFragment extends Fragment {
                 //On crée notre adapter et on le lie avec notre jeu de données
                 coktailCategorieListAdapter = new CoktailSearchListAdapter(response.body().drinks, (MainActivity) getActivity());
                 if (response.body().drinks == null){
-                    System.out.println("Fails gros con");
                     ErrorFragment = new ErrorFragment();
                     loadFragment(ErrorFragment);
                 }
