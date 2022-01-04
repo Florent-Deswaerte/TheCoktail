@@ -12,8 +12,10 @@ import java.util.List;
 
 public class categorieListAdapter extends RecyclerView.Adapter<CategorieCellHolder> {
     private Categorie[] dataSource;
-    public categorieListAdapter(Categorie[] dataSource) {
+    private OnCategorieListClickListener onCategorieListClickListener;
+    public categorieListAdapter(Categorie[] dataSource, OnCategorieListClickListener listener) {
         this.dataSource = dataSource;
+        onCategorieListClickListener = listener;
     }
 
     @NonNull
@@ -28,6 +30,12 @@ public class categorieListAdapter extends RecyclerView.Adapter<CategorieCellHold
     @Override
     public void onBindViewHolder(@NonNull CategorieCellHolder holder, int position) {
         holder.categorieTextView.setText(dataSource[position].strCategory);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCategorieListClickListener.onCategorieListClick(dataSource[holder.getAdapterPosition()]);
+            }
+        });
     }
 
     @Override

@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnCategorieListClickListener{
 
     Fragment RandomFragment;
     Fragment ListFragment;
@@ -54,5 +54,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
         }
         return loadFragment(fragment);
+    }
+
+    @Override
+    public void onCategorieListClick(Categorie categorie) {
+        System.out.println(categorie.strCategory);
     }
 }

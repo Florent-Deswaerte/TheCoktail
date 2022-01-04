@@ -58,7 +58,7 @@ public class ListFragment extends Fragment {
                 categorieListRecyclerView.setLayoutManager(categorieListManager);
                 //On définit notre jeu de données pour alimenter notre liste.
                 //On crée notre adapter et on le lie avec notre jeu de données
-                categorieListAdapter = new categorieListAdapter(response.body().categories);
+                categorieListAdapter = new categorieListAdapter(response.body().categories, (MainActivity) getActivity());
                 categorieListRecyclerView.setAdapter(categorieListAdapter);
             }
 
