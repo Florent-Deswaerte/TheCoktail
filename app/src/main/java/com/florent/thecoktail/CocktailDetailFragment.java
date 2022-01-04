@@ -69,7 +69,6 @@ public class CocktailDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.thecocktaildb.com/api/json/v1/1/").addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
 
@@ -135,6 +134,7 @@ public class CocktailDetailFragment extends Fragment {
 
                 Picasso.get().load(response.body().drinks[0].strDrinkThumb).into(imageViewCocktail);
             }
+
 
             @Override
             public void onFailure(Call<Drink> call, Throwable t) {
