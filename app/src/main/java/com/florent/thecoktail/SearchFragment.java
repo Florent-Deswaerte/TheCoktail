@@ -52,7 +52,6 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 String name = (RechercherPlainText.getText()).toString();
                 CocktailCategoryFragment = new CocktailSearchFragment(name);
-                textView2.setText("Idiot");
                 loadFragment(CocktailCategoryFragment);
             }
         });
